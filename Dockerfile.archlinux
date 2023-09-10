@@ -1,0 +1,7 @@
+FROM archlinux:base-20230723.0.166908
+RUN \
+  --mount=type=cache,target=/var/cache/pacman,sharing=locked \
+  --mount=type=bind,source=./repro-sources-list.sh,target=/usr/local/bin/repro-sources-list.sh \
+  repro-sources-list.sh && \
+  pacman -Sy && \
+  pacman -Su --noconfirm gcc
