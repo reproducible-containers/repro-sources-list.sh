@@ -9,4 +9,4 @@ Examples:
 
 ## Hint
 - To preserve the package cache on GHA, use <https://github.com/overmindtech/buildkit-cache-dance>.
-  See [`.github/workflows/main.yaml`](./github/workflows/main.yaml) for an example.
+  See [`.github/workflows/main.yaml`](./.github/workflows/main.yaml) for an example.
