@@ -1,0 +1,9 @@
+FROM ubuntu:jammy-20230804
+ENV DEBIAN_FRONTEND=noninteractive
+RUN \
+  --mount=type=cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,target=/var/lib/apt,sharing=locked \
+  --mount=type=bind,source=./repro-sources-list.sh,target=/usr/local/bin/repro-sources-list.sh \
+  repro-sources-list.sh && \
+  apt-get update && \
+  apt-get install -y gcc

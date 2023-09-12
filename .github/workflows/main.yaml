@@ -48,7 +48,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        debian-version: ["11", "12"]
+        dockerfile: ["Dockerfile.debian-11", "Dockerfile.debian-12", "Dockerfile.ubuntu-2204", "Dockerfile.ubuntu-2304"]
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-buildx-action@v2
@@ -60,12 +60,12 @@ jobs:
         uses: actions/cache@v3
         with:
           path: var-cache-apt
-          key: var-cache-apt-${{ hashFiles(format('Dockerfile.debian-{0}', matrix.debian-version)) }}
+          key: var-cache-apt-${{ hashFiles(format('{0}', matrix.dockerfile)) }}
       - name: Cache var-lib-apt
         uses: actions/cache@v3
         with:
           path: var-lib-apt
-          key: var-lib-apt-${{ hashFiles(format('Dockerfile.debian-{0}', matrix.debian-version)) }}
+          key: var-lib-apt-${{ hashFiles(format('{0}', matrix.dockerfile)) }}
       - name: inject var-cache-apt into docker
         uses: overmindtech/buildkit-cache-dance/inject@306d31a77191f643c0c4a95083f36c6ddccb4a16
         with:
@@ -82,7 +82,7 @@ jobs:
           context: .
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          file: Dockerfile.debian-${{ matrix.debian-version }}
+          file: ${{ matrix.dockerfile }}
           push: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
