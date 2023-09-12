@@ -64,5 +64,4 @@ case "${ID}" in
     exit 1
 esac
 
-echo "${SOURCE_DATE_EPOCH}" >/SOURCE_DATE_EPOCH
-touch "--date=@${SOURCE_DATE_EPOCH}" /SOURCE_DATE_EPOCH
+echo "SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH}"
