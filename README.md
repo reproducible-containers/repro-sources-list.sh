@@ -5,6 +5,8 @@
 Examples:
 - [`Dockerfile.debian-11`](./Dockerfile.debian-11)
 - [`Dockerfile.debian-12`](./Dockerfile.debian-12)
+- [`Dockerfile.ubuntu-2204`](./Dockerfile.ubuntu-2204)
+- [`Dockerfile.ubuntu-2304`](./Dockerfile.ubuntu-2304)
 - [`Dockerfile.archlinux`](./Dockerfile.archlinux)
 
 ## Hint
