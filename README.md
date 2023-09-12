@@ -12,3 +12,6 @@ Examples:
 ## Hint
 - To preserve the package cache on GHA, use <https://github.com/overmindtech/buildkit-cache-dance>.
   See [`.github/workflows/main.yaml`](./.github/workflows/main.yaml) for an example.
+
+- For Debian >= 13 and Ubuntu >= 23.10, see also [`./alternative/`](./alternative/)
+  to lock packages without using [`repro-sources-list.sh`](./repro-sources-list.sh).
