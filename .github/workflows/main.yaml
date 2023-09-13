@@ -23,7 +23,7 @@ jobs:
           path: var-cache-pacman
           key: var-cache-pacman-${{ hashFiles('Dockerfile.archlinux') }}
       - name: inject var-cache-pacman into docker
-        uses: overmindtech/buildkit-cache-dance/inject@306d31a77191f643c0c4a95083f36c6ddccb4a16
+        uses: reproducible-containers/buildkit-cache-dance/inject@v1.0.0
         with:
           cache-source: var-cache-pacman
           cache-target: /var/cache/pacman
@@ -38,7 +38,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
       - name: extract var-cache-pacman from docker
-        uses: overmindtech/buildkit-cache-dance/extract@306d31a77191f643c0c4a95083f36c6ddccb4a16
+        uses: reproducible-containers/buildkit-cache-dance/extract@v1.0.0
         with:
           cache-source: var-cache-pacman
           cache-target: /var/cache/pacman
@@ -73,12 +73,12 @@ jobs:
           path: var-lib-apt
           key: var-lib-apt-${{ hashFiles(format('{0}', matrix.dockerfile)) }}
       - name: inject var-cache-apt into docker
-        uses: overmindtech/buildkit-cache-dance/inject@306d31a77191f643c0c4a95083f36c6ddccb4a16
+        uses: reproducible-containers/buildkit-cache-dance/inject@v1.0.0
         with:
           cache-source: var-cache-apt
           cache-target: /var/cache/apt
       - name: inject var-lib-apt into docker
-        uses: overmindtech/buildkit-cache-dance/inject@306d31a77191f643c0c4a95083f36c6ddccb4a16
+        uses: reproducible-containers/buildkit-cache-dance/inject@v1.0.0
         with:
           cache-source: var-lib-apt
           cache-target: /var/lib/apt
@@ -93,12 +93,12 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
       - name: extract var-cache-apt from docker
-        uses: overmindtech/buildkit-cache-dance/extract@306d31a77191f643c0c4a95083f36c6ddccb4a16
+        uses: reproducible-containers/buildkit-cache-dance/extract@v1.0.0
         with:
           cache-source: var-cache-apt
           cache-target: /var/cache/apt
       - name: extract var-lib-apt from docker
-        uses: overmindtech/buildkit-cache-dance/extract@306d31a77191f643c0c4a95083f36c6ddccb4a16
+        uses: reproducible-containers/buildkit-cache-dance/extract@v1.0.0
         with:
           cache-source: var-lib-apt
           cache-target: /var/lib/apt
