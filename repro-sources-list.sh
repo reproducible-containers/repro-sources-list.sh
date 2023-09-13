@@ -82,10 +82,11 @@ case "${ID}" in
 	apt-get -o Acquire::https::Verify-Peer=false install -y ca-certificates >&2
 	;;
 "arch")
+	: "${SNAPSHOT_ARCHIVE_BASE:=http://archive.archlinux.org/}"
 	: "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /var/log/pacman.log)}"
 	export SOURCE_DATE_EPOCH
 	# shellcheck disable=SC2016
-	date -d "@${SOURCE_DATE_EPOCH}" '+Server = https://archive.archlinux.org/repos/%Y/%m/%d/$repo/os/$arch' >/etc/pacman.d/mirrorlist
+	date -d "@${SOURCE_DATE_EPOCH}" "+Server = ${SNAPSHOT_ARCHIVE_BASE}repos/%Y/%m/%d/\$repo/os/\$arch" >/etc/pacman.d/mirrorlist
 	;;
 *)
 	echo >&2 "Unsupported distribution: ${ID}"
