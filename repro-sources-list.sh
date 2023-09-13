@@ -94,4 +94,6 @@ case "${ID}" in
 	;;
 esac
 
+: "${WRITE_SOURCE_DATE_EPOCH:=/dev/null}"
+echo "${SOURCE_DATE_EPOCH}" >"${WRITE_SOURCE_DATE_EPOCH}"
 echo "SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH}"
