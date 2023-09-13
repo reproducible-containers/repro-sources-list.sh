@@ -24,7 +24,7 @@ Examples:
 - [`Dockerfile.archlinux`](./Dockerfile.archlinux)
 
 ## Hints
-- To preserve the package cache on GHA, use <https://github.com/overmindtech/buildkit-cache-dance>.
+- To preserve the package cache on GHA, use <https://github.com/reproducible-containers/buildkit-cache-dance>.
   See [`.github/workflows/main.yaml`](./.github/workflows/main.yaml) for an example.
 
 - For Debian >= 13 and Ubuntu >= 23.10, see also [`./alternative/`](./alternative/)
