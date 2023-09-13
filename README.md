@@ -41,9 +41,9 @@ Examples:
 
 Distribution-specific default values:
 
-| Distribution   | `SOURCE_DATE_EPOCH`                                  | `SNAPSHOT_ARCHIVE_BASE`                          |
-|----------------|------------------------------------------------------|--------------------------------------------------|
-| Debian (<= 11) | Timestamp of `/etc/apt/sources.list`                 | `http://snapshot-cloudflare.debian.org/archive/` |
-| Debian (>= 12) | Timestamp of `/etc/apt/sources.list.d/debian.source` | `http://snapshot-cloudflare.debian.org/archive/` |
-| Ubuntu         | Timestamp of `/etc/apt/sources.list`                 | `http://snapshot.ubuntu.com/`                    |
-| ArchLinux      | Timestamp of `/var/log/pacman.log`                   | `http://archive.archlinux.org/`                  |
+| Distribution   | `SOURCE_DATE_EPOCH`                                   | `SNAPSHOT_ARCHIVE_BASE`                          |
+|----------------|-------------------------------------------------------|--------------------------------------------------|
+| Debian (<= 11) | Timestamp of `/etc/apt/sources.list`                  | `http://snapshot-cloudflare.debian.org/archive/` |
+| Debian (>= 12) | Timestamp of `/etc/apt/sources.list.d/debian.sources` | `http://snapshot-cloudflare.debian.org/archive/` |
+| Ubuntu         | Timestamp of `/etc/apt/sources.list`                  | `http://snapshot.ubuntu.com/`                    |
+| ArchLinux      | Timestamp of `/var/log/pacman.log`                    | `http://archive.archlinux.org/`                  |
