@@ -47,3 +47,16 @@ Distribution-specific default values:
 | Debian (>= 12) | Timestamp of `/etc/apt/sources.list.d/debian.sources` | `http://snapshot-cloudflare.debian.org/archive/` |
 | Ubuntu         | Timestamp of `/etc/apt/sources.list`                  | `http://snapshot.ubuntu.com/`                    |
 | ArchLinux      | Timestamp of `/var/log/pacman.log`                    | `http://archive.archlinux.org/`                  |
+
+
+## Related project
+<https://github.com/reproducible-containers/repro-pkg-cache> contains Dockerfile examples to reproduce package cache
+with specific versions, by pushing the cache to an image registry.
+
+|Project                                                           |Cache location                           |Best for                             |
+|------------------------------------------------------------------|-----------------------------------------|-------------------------------------|
+|<https://github.com/reproducible-containers/repro-sources-list.sh>|Distros' permanent snapshot servers (\*1)|Debian, Ubuntu, ArchLinux            |
+|<https://github.com/reproducible-containers/repro-pkg-cache>      |Your own permanent image registry        |Alpine, Fedora, Rocky, openSUSE, etc.|
+
+(\*1): The packages can be also ephemerally cached on GitHub Actions to reduce loads on distros' snapshot servers.
+See the [Hints](#hints) above.
