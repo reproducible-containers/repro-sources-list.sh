@@ -38,6 +38,7 @@ Examples:
 | `WRITE_SOURCE_DATE_EPOCH` | Write the `SOURCE_DATE_EPOCH` value to a file | `/dev/null`                                                        |
 | `SNAPSHOT_ARCHIVE_BASE`   | Base URL of the snapshot                      | `http://snapshot-cloudflare.debian.org/archive/`, etc. (See below) |
 | `BACKPORTS`               | Enable Debian backports                       | `0`                                                                |
+| `KEEP_CACHE`              | Keep apt cache                                | `1`                                                                |
 
 Distribution-specific default values:
 
