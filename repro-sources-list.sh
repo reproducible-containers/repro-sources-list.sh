@@ -34,6 +34,8 @@ set -eux -o pipefail
 
 . /etc/os-release
 
+: "${KEEP_CACHE:=1}"
+
 keep_apt_cache() {
 	rm -f /etc/apt/apt.conf.d/docker-clean
 	echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' >/etc/apt/apt.conf.d/keep-cache
@@ -59,7 +61,7 @@ case "${ID}" in
 	echo "deb [check-valid-until=no] ${SNAPSHOT_ARCHIVE_BASE}debian-security/${snapshot} ${VERSION_CODENAME}-security main" >>/etc/apt/sources.list
 	echo "deb [check-valid-until=no] ${SNAPSHOT_ARCHIVE_BASE}debian/${snapshot} ${VERSION_CODENAME}-updates main" >>/etc/apt/sources.list
 	if [ "${BACKPORTS}" = 1 ]; then echo "deb [check-valid-until=no] ${SNAPSHOT_ARCHIVE_BASE}debian/${snapshot} ${VERSION_CODENAME}-backports main" >>/etc/apt/sources.list; fi
-	keep_apt_cache
+	if [ "${KEEP_CACHE}" = 1 ]; then keep_apt_cache; fi
 	;;
 "ubuntu")
 	: "${SNAPSHOT_ARCHIVE_BASE:=http://snapshot.ubuntu.com/}"
@@ -75,7 +77,7 @@ case "${ID}" in
 	echo "deb [check-valid-until=no] ${SNAPSHOT_ARCHIVE_BASE}ubuntu/${snapshot} ${VERSION_CODENAME}-security main restricted" >>/etc/apt/sources.list
 	echo "deb [check-valid-until=no] ${SNAPSHOT_ARCHIVE_BASE}ubuntu/${snapshot} ${VERSION_CODENAME}-security universe" >>/etc/apt/sources.list
 	echo "deb [check-valid-until=no] ${SNAPSHOT_ARCHIVE_BASE}ubuntu/${snapshot} ${VERSION_CODENAME}-security multiverse" >>/etc/apt/sources.list
-	keep_apt_cache
+	if [ "${KEEP_CACHE}" = 1 ]; then keep_apt_cache; fi
 	# http://snapshot.ubuntu.com is redirected to https, so we have to install ca-certificates
 	export DEBIAN_FRONTEND=noninteractive
 	apt-get -o Acquire::https::Verify-Peer=false update >&2
