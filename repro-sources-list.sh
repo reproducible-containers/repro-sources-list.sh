@@ -46,15 +46,12 @@ case "${ID}" in
 	# : "${SNAPSHOT_ARCHIVE_BASE:=http://snapshot.debian.org/archive/}"
 	: "${SNAPSHOT_ARCHIVE_BASE:=http://snapshot-cloudflare.debian.org/archive/}"
 	: "${BACKPORTS:=}"
-	case "${VERSION_ID}" in
-	"10" | "11")
-		: "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list)}"
-		;;
-	*)
+	if [ -e /etc/apt/sources.list.d/debian.sources ]; then
 		: "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list.d/debian.sources)}"
 		rm -f /etc/apt/sources.list.d/debian.sources
-		;;
-	esac
+	else
+		: "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list)}"
+	fi
 	snapshot="$(printf "%(%Y%m%dT%H%M%SZ)T\n" "${SOURCE_DATE_EPOCH}")"
 	# TODO: use the new format for Debian >= 12
 	echo "deb [check-valid-until=no] ${SNAPSHOT_ARCHIVE_BASE}debian/${snapshot} ${VERSION_CODENAME} main" >/etc/apt/sources.list
@@ -65,15 +62,12 @@ case "${ID}" in
 	;;
 "ubuntu")
 	: "${SNAPSHOT_ARCHIVE_BASE:=http://snapshot.ubuntu.com/}"
-	case "${VERSION_ID}" in
-	"20.04" | "22.04" | "23.10")
-		: "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list)}"
-		;;
-	*)
+	if [ -e /etc/apt/sources.list.d/ubuntu.sources ]; then
 		: "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list.d/ubuntu.sources)}"
 		rm -f /etc/apt/sources.list.d/ubuntu.sources
-		;;
-	esac
+	else
+		: "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list)}"
+	fi
 	snapshot="$(printf "%(%Y%m%dT%H%M%SZ)T\n" "${SOURCE_DATE_EPOCH}")"
 	# TODO: use the new format for Ubuntu >= 24.04
 	echo "deb [check-valid-until=no] ${SNAPSHOT_ARCHIVE_BASE}ubuntu/${snapshot} ${VERSION_CODENAME} main restricted" >/etc/apt/sources.list
