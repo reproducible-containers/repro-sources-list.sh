@@ -5,3 +5,9 @@ RUN \
   repro-sources-list.sh && \
   pacman -Sy && \
   pacman -Su --noconfirm gcc
+
+# Note: the following files in the image are not reproducible:
+# etc/pacman.d/gnupg/trustdb.gpg
+# var/cache/ldconfig/aux-cache
+# var/lib/pacman/local/*/desc
+# var/log/pacman.log

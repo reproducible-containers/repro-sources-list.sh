@@ -14,4 +14,6 @@ RUN \
   : "Fetching the snapshot and installing ca-certificates in one command" && \
   apt-get install --update --snapshot "${snapshot}" -o Acquire::Check-Valid-Until=false -o Acquire::https::Verify-Peer=false -y ca-certificates && \
   : "Installing gcc" && \
-  apt-get install --snapshot "${snapshot}" -y gcc
+  apt-get install --snapshot "${snapshot}" -y gcc && \
+  : "Clean up for improving reproducibility (optional)" && \
+  rm -rf /var/log/* /var/cache/ldconfig/aux-cache
