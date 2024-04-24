@@ -1,13 +1,13 @@
 # Base image must be Ubuntu 23.10 (Mantic Minotaur) or later: https://salsa.debian.org/apt-team/apt/-/merge_requests/291
-FROM ubuntu:mantic-20230819
+FROM ubuntu:noble-20240407.1
 ENV DEBIAN_FRONTEND=noninteractive
 RUN \
   --mount=type=cache,target=/var/cache/apt,sharing=locked \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
-  : "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list)}" && \
+  : "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list.d/ubuntu.sources)}" && \
   snapshot="$(/bin/bash -euc "printf \"%(%Y%m%dT%H%M%SZ)T\n\" \"${SOURCE_DATE_EPOCH}\"")" && \
   : "Enabling snapshot" && \
-  sed -i -e 's/^deb http/deb [snapshot=true] http/g' /etc/apt/sources.list && \
+  sed -i -e '/Types: deb/ a\Snapshot: true' /etc/apt/sources.list.d/ubuntu.sources && \
   : "Enabling cache" && \
   rm -f /etc/apt/apt.conf.d/docker-clean && \
   echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' >/etc/apt/apt.conf.d/keep-cache && \

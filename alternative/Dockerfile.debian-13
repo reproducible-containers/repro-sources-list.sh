@@ -7,7 +7,7 @@ RUN \
   : "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list.d/debian.sources)}" && \
   snapshot="$(/bin/bash -euc "printf \"%(%Y%m%dT%H%M%SZ)T\n\" \"${SOURCE_DATE_EPOCH}\"")" && \
   : "Enabling snapshot" && \
-  sed -i -e '/URIs: http:\/\/deb.debian.org\/debian/ a\Snapshot: true' /etc/apt/sources.list.d/debian.sources && \
+  sed -i -e '/Types: deb/ a\Snapshot: true' /etc/apt/sources.list.d/debian.sources && \
   : "Enabling cache" && \
   rm -f /etc/apt/apt.conf.d/docker-clean && \
   echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' >/etc/apt/apt.conf.d/keep-cache && \
