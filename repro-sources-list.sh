@@ -24,7 +24,7 @@
 # - debian:11    (/etc/apt/sources.list)
 # - debian:12    (/etc/apt/sources.list.d/debian.sources)
 # - ubuntu:22.04 (/etc/apt/sources.list)
-# - ubuntu:23.10 (/etc/apt/sources.list)
+# - ubuntu:24.04 (/etc/apt/sources.listd/ubuntu.sources)
 # - archlinux    (/etc/pacman.d/mirrorlist)
 #
 # For the further information, see https://github.com/reproducible-containers/repro-sources-list.sh
@@ -65,8 +65,17 @@ case "${ID}" in
 	;;
 "ubuntu")
 	: "${SNAPSHOT_ARCHIVE_BASE:=http://snapshot.ubuntu.com/}"
-	: "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list)}"
+	case "${VERSION_ID}" in
+	"20.04" | "22.04" | "23.10")
+		: "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list)}"
+		;;
+	*)
+		: "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list.d/ubuntu.sources)}"
+		rm -f /etc/apt/sources.list.d/ubuntu.sources
+		;;
+	esac
 	snapshot="$(printf "%(%Y%m%dT%H%M%SZ)T\n" "${SOURCE_DATE_EPOCH}")"
+	# TODO: use the new format for Ubuntu >= 24.04
 	echo "deb [check-valid-until=no] ${SNAPSHOT_ARCHIVE_BASE}ubuntu/${snapshot} ${VERSION_CODENAME} main restricted" >/etc/apt/sources.list
 	echo "deb [check-valid-until=no] ${SNAPSHOT_ARCHIVE_BASE}ubuntu/${snapshot} ${VERSION_CODENAME}-updates main restricted" >>/etc/apt/sources.list
 	echo "deb [check-valid-until=no] ${SNAPSHOT_ARCHIVE_BASE}ubuntu/${snapshot} ${VERSION_CODENAME} universe" >>/etc/apt/sources.list

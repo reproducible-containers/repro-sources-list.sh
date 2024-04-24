@@ -47,9 +47,9 @@ jobs:
           - "Dockerfile.debian-11"
           - "Dockerfile.debian-12"
           - "Dockerfile.ubuntu-2204"
-          - "Dockerfile.ubuntu-2304"
+          - "Dockerfile.ubuntu-2404"
           - "alternative/Dockerfile.debian-13"
-          - "alternative/Dockerfile.ubuntu-2310"
+          - "alternative/Dockerfile.ubuntu-2404"
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-buildx-action@v2
