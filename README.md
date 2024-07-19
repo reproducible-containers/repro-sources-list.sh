@@ -32,23 +32,23 @@ Examples:
 
 ### Environment variables
 
-| Variable                  | Description                                   | Default value                                                      |
-|---------------------------|-----------------------------------------------|--------------------------------------------------------------------|
-| `SOURCE_DATE_EPOCH`       | Timestamp of the snapshot (int64)             | Timestamp of `/etc/apt/sources.list`, etc. (See below)             |
-| `WRITE_SOURCE_DATE_EPOCH` | Write the `SOURCE_DATE_EPOCH` value to a file | `/dev/null`                                                        |
-| `SNAPSHOT_ARCHIVE_BASE`   | Base URL of the snapshot                      | `http://snapshot-cloudflare.debian.org/archive/`, etc. (See below) |
-| `BACKPORTS`               | Enable Debian backports                       | `0`                                                                |
-| `KEEP_CACHE`              | Keep apt cache                                | `1`                                                                |
+| Variable                  | Description                                   | Default value                                           |
+|---------------------------|-----------------------------------------------|---------------------------------------------------------|
+| `SOURCE_DATE_EPOCH`       | Timestamp of the snapshot (int64)             | Timestamp of `/etc/apt/sources.list`, etc. (See below)  |
+| `WRITE_SOURCE_DATE_EPOCH` | Write the `SOURCE_DATE_EPOCH` value to a file | `/dev/null`                                             |
+| `SNAPSHOT_ARCHIVE_BASE`   | Base URL of the snapshot                      | `http://snapshot.debian.org/archive/`, etc. (See below) |
+| `BACKPORTS`               | Enable Debian backports                       | `0`                                                     |
+| `KEEP_CACHE`              | Keep apt cache                                | `1`                                                     |
 
 Distribution-specific default values:
 
-| Distribution      | `SOURCE_DATE_EPOCH`                                   | `SNAPSHOT_ARCHIVE_BASE`                          |
-|-------------------|-------------------------------------------------------|--------------------------------------------------|
-| Debian (<= 11)    | Timestamp of `/etc/apt/sources.list`                  | `http://snapshot-cloudflare.debian.org/archive/` |
-| Debian (>= 12)    | Timestamp of `/etc/apt/sources.list.d/debian.sources` | `http://snapshot-cloudflare.debian.org/archive/` |
-| Ubuntu (<= 23.10) | Timestamp of `/etc/apt/sources.list`                  | `http://snapshot.ubuntu.com/`                    |
-| Ubuntu (>= 24.04) | Timestamp of `/etc/apt/sources.list.d/ubuntu.sources` | `http://snapshot.ubuntu.com/`                    |
-| ArchLinux         | Timestamp of `/var/log/pacman.log`                    | `http://archive.archlinux.org/`                  |
+| Distribution      | `SOURCE_DATE_EPOCH`                                   | `SNAPSHOT_ARCHIVE_BASE`               |
+|-------------------|-------------------------------------------------------|---------------------------------------|
+| Debian (<= 11)    | Timestamp of `/etc/apt/sources.list`                  | `http://snapshot.debian.org/archive/` |
+| Debian (>= 12)    | Timestamp of `/etc/apt/sources.list.d/debian.sources` | `http://snapshot.debian.org/archive/` |
+| Ubuntu (<= 23.10) | Timestamp of `/etc/apt/sources.list`                  | `http://snapshot.ubuntu.com/`         |
+| Ubuntu (>= 24.04) | Timestamp of `/etc/apt/sources.list.d/ubuntu.sources` | `http://snapshot.ubuntu.com/`         |
+| ArchLinux         | Timestamp of `/var/log/pacman.log`                    | `http://archive.archlinux.org/`       |
 
 
 ## Related project

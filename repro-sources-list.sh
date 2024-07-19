@@ -43,8 +43,7 @@ keep_apt_cache() {
 
 case "${ID}" in
 "debian")
-	# : "${SNAPSHOT_ARCHIVE_BASE:=http://snapshot.debian.org/archive/}"
-	: "${SNAPSHOT_ARCHIVE_BASE:=http://snapshot-cloudflare.debian.org/archive/}"
+	: "${SNAPSHOT_ARCHIVE_BASE:=http://snapshot.debian.org/archive/}"
 	: "${BACKPORTS:=}"
 	if [ -e /etc/apt/sources.list.d/debian.sources ]; then
 		: "${SOURCE_DATE_EPOCH:=$(stat --format=%Y /etc/apt/sources.list.d/debian.sources)}"
